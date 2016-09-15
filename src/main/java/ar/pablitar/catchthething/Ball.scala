@@ -81,6 +81,10 @@ class Ball extends SpeedyComponent[CatchTheThingScene] {
 
   def onCaught() = {
     this.setZ(-2)
+    this.getScene.score.sumScore // MEJORA se suma un punto por cada semilla
+    this.getScene.addComponent(new Score(this.getScene))
+    this.getScene.score.sumCombo //MEJORA contador de combo
+    this.getScene.score.sumMaxCombo //MEJORA contador de combo maximo
     this.catched = true
   }
 
@@ -101,7 +105,9 @@ class Ball extends SpeedyComponent[CatchTheThingScene] {
   }
 
   def checkIfBelowTheScreen() = {
-    if (this.position.x2 > 650)
-      this.destroy()
+    if (this.position.x2 > 650){
+        this.destroy()
+        this.getScene.score.resetCombo //MEJORA el combo actual es reiniciado si no se atrapa una semilla
+      }
   }
 }

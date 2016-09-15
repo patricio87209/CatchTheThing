@@ -6,7 +6,7 @@ import ar.pablitar.vainilla.commons.math.Vector2D
 
 class CatchTheThingScene extends GameScene {
   val catcher = new Catcher(new CatcherShadow)
-  
+  val score = new ScoreDisplay(this)
   val background = new GameComponent
   background.setAppearance(Resources.background)
   background.setZ(-50)
@@ -16,4 +16,5 @@ class CatchTheThingScene extends GameScene {
   this.addComponent(catcher.shadow)
   this.addComponent(new BallSpawner)
   this.addComponent(new Sun(Vector2D(575, 85)))
+  this.addComponent(score)
 }

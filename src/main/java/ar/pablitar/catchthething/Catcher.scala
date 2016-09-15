@@ -40,8 +40,11 @@ class Catcher(val shadow: CatcherShadow) extends SpeedyComponent[CatchTheThingSc
   shadow.position = this.position
   
   override def update(state :DeltaState) = {
+    //MEJORA Puede aumentar su velocidad al mantener shift
     val speedX:Double = 
-      if(state.isKeyBeingHold(Key.RIGHT)) speedMagnitude 
+      if(state.isKeyBeingHold(Key.SHIFT) && state.isKeyBeingHold(Key.RIGHT)) speedMagnitude * 1.8 
+      else if(state.isKeyBeingHold(Key.SHIFT) && state.isKeyBeingHold(Key.LEFT)) -speedMagnitude * 1.8 
+      else if(state.isKeyBeingHold(Key.RIGHT)) speedMagnitude 
       else if(state.isKeyBeingHold(Key.LEFT)) -speedMagnitude
       else 0.0
     
